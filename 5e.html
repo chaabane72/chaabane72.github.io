@@ -5,26 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Technologie – 5e | M. Chaabane</title>
   <style>
-    body{font-family:system-ui,Segoe UI,Roboto;margin:0;background:#f0fdf4;color:#064e3b;text-align:center}
-    header{background:#16a34a;color:white;padding:2rem 1rem}
+    :root{
+      --green:#16a34a; --green-dark:#15803d;
+      --bg:#f0fdf4; --text:#064e3b; --footer:#064e3b; --footer-text:#bbf7d0;
+    }
+    *{box-sizing:border-box}
+    body{font-family:system-ui,Segoe UI,Roboto;margin:0;background:var(--bg);color:var(--text);text-align:center}
+    header{background:var(--green);color:white;padding:2.5rem 1rem 2rem;position:relative}
     h1{margin:0;font-size:2rem}
-    nav{margin-bottom:1rem}
-    nav a{color:white;text-decoration:none;font-weight:700;margin:0 .5rem}
+    /* Bouton retour en haut à droite */
+    .top-right{
+      position:absolute; right:12px; top:12px;
+      background:white; color:var(--green);
+      text-decoration:none; font-weight:800; border-radius:.7rem;
+      padding:.6rem 1rem; box-shadow:0 2px 6px rgba(0,0,0,.12);
+      border:2px solid white;
+    }
+    .top-right:hover{background:#f5fff7; border-color:#e2fbe8}
+    @media (max-width:520px){
+      .top-right{padding:.5rem .75rem; font-size:.95rem}
+    }
+
     main{padding:3rem 1rem}
     .btn-grid{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin-top:1.5rem}
-    a.button{background:#16a34a;color:white;text-decoration:none;padding:1rem 2rem;border-radius:.75rem;font-weight:700;font-size:1.15rem;transition:transform .2s,background .2s}
-    a.button:hover{background:#15803d;transform:translateY(-3px)}
-    footer{background:#064e3b;color:#bbf7d0;padding:1.25rem 1rem;margin-top:3rem;font-size:.95rem}
-    footer a{color:#bbf7d0;text-decoration:underline}
+    a.button{
+      background:var(--green); color:white; text-decoration:none;
+      padding:1rem 2rem; border-radius:.75rem; font-weight:700; font-size:1.15rem;
+      transition:transform .2s, background .2s
+    }
+    a.button:hover{background:var(--green-dark); transform:translateY(-3px)}
+
+    footer{background:var(--footer); color:var(--footer-text); padding:1.25rem 1rem; margin-top:3rem; font-size:.95rem}
+    footer a{color:var(--footer-text); text-decoration:underline}
   </style>
 </head>
 <body>
   <header>
-    <nav>
-      <a href="index.html">⬅ Retour à l’accueil</a> ·
-      <a href="4e.html">4e</a> ·
-      <a href="3e.html">3e</a>
-    </nav>
+    <a class="top-right" href="index.html" aria-label="Retour à l’accueil">⬅ Accueil</a>
     <h1>Technologie – M. Chaabane</h1>
   </header>
 
