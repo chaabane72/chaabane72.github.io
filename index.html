@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Technologie au collège – M. Chaabane</title>
+  <meta name="description" content="Cours, projets et ressources de technologie pour les élèves de collège, par M. Chaabane." />
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230066ff'/><path d='M20 70 L50 20 L80 70 Z' fill='white'/></svg>">
+  <style>
+    :root {
+      --bg: #ffffff; --fg: #0f172a; --muted: #475569;
+      --primary: #2563eb; --primary-weak: #dbeafe; --card: #f8fafc;
+      --ring: #93c5fd; --border: #e2e8f0; --accent: #16a34a;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{ --bg:#0b1220; --fg:#e5e7eb; --muted:#a1a1aa; --primary:#60a5fa; --primary-weak:#172554; --card:#0f172a; --ring:#1d4ed8; --border:#1f2937; --accent:#22c55e; }
+    }
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{ margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial; color:var(--fg); background:var(--bg) }
+    a{ color:var(--primary); text-decoration:none }
+    a:hover{ text-decoration:underline }
+    .container{ max-width:1100px; margin-inline:auto; padding:0 1rem }
+    header{ position:sticky; top:0; backdrop-filter:saturate(180%) blur(8px); background: color-mix(in oklab, var(--bg) 70%, transparent); border-bottom:1px solid var(--border); z-index:50 }
+    .nav{ display:flex; align-items:center; justify-content:space-between; padding:.75rem 0 }
+    .brand{ display:inline-flex; align-items:center; gap:.6rem; font-weight:700 }
+    .brand .logo{ width:32px; height:32px; display:grid; place-items:center; background:var(--primary); color:white; border-radius:8px; font-size:.9rem }
+    .menu{ display:flex; gap:1rem; align-items:center }
+    .menu a{ padding:.4rem .6rem; border-radius:.5rem; font-weight:600 }
+    .menu a:focus-visible{ outline:3px solid var(--ring); outline-offset:2px }
+    .menu-toggle{ display:none; border:1px solid var(--border); background:var(--card); padding:.5rem .6rem; border-radius:.6rem }
+
+    .hero{ display:grid; grid-template-columns:1.2fr 1fr; gap:2rem; padding:3rem 0 2rem; align-items:center }
+    .badge{ display:inline-flex; gap:.5rem; background:var(--primary-weak); color:var(--primary); padding:.25rem .6rem; border-radius:999px; font-weight:600 }
+    h1{ font-size:clamp(2rem,4vw,3rem); line-height:1.15; margin:.5rem 0 1rem }
+    .lead{ color:var(--muted) }
+    .cta{ display:inline-flex; gap:.6rem; align-items:center; background:var(--primary); color:white; border:none; padding:.8rem 1rem; border-radius:.8rem; font-weight:700; cursor:pointer }
+    .cta.alt{ background:var(--accent) }
+    .img-card{ background:var(--card); border:1px solid var(--border); border-radius:1rem; padding:1rem }
+    .img-card img{ width:100%; border-radius:.8rem }
+
+    section{ padding:4rem 0; border-top:1px solid var(--border) }
+    .section-title{ font-size:clamp(1.5rem,3vw,2rem); margin:0 0 1rem }
+    .grid{ display:grid; gap:1rem }
+    .grid-3{ grid-template-columns: repeat(3, minmax(0,1fr)) }
+    .grid-2{ grid-template-columns: repeat(2, minmax(0,1fr)) }
+
+    /* Onglets par niveaux */
+    .tabs{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.5rem 0 1rem }
+    .tabs button{ border:1px solid var(--border); background:var(--card); padding:.5rem .75rem; border-radius:.6rem; cursor:pointer; font-weight:600 }
+    .tabs button[aria-selected="true"]{ background:var(--primary); color:white }
+    .tab-panel{ display:none }
+    .tab-panel.active{ display:block }
+
+    @media (max-width:900px){
+      .hero{ grid-template-columns:1fr }
+      .grid-3, .grid-2{ grid-template-columns:1fr }
+      .menu{ display:none }
+      .menu.open{ display:grid; grid-auto-flow:row; gap:.25rem; padding:.75rem 0 1rem }
+      .menu-toggle{ display:inline-flex }
+    }
+
+    .card{ background:var(--card); border:1px solid var(--border); border-radius:1rem; padding:1rem }
+    .card h3{ margin:.25rem 0 .5rem; font-size:1.1rem }
+    .tag{ display:inline-block; font-size:.8rem; padding:.25rem .5rem; border:1px solid var(--border); border-radius:.5rem; color:var(--muted) }
+
+    .list{ display:grid; gap:.5rem }
+    .list a{ display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .6rem; border-radius:.6rem }
+    .list a:hover{ background: color-mix(in oklab, var(--card) 70%, transparent); text-decoration:none }
+
+    footer{ border-top:1px solid var(--border); padding:2rem 0; color:var(--muted) }
+    .visually-hidden{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
+
+    @media print{ header,.cta,.menu-toggle{ display:none!important } section{ break-inside:avoid } a::after{ content:" (" attr(href) ")"; font-size:.8em; color:#666 } }
+  </style>
+</head>
+<body>
+  <a class="visually-hidden" href="#contenu">Aller au contenu</a>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Menu principal">
+      <a class="brand" href="#accueil">
+        <span class="logo" aria-hidden="true">T</span>
+        <span>Technologie – M. Chaabane</span>
+      </a>
+      <nav>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+        <div id="menu" class="menu" role="menubar">
+          <a role="menuitem" href="#cours">Cours</a>
+          <a role="menuitem" href="#projets">Projets</a>
+          <a role="menuitem" href="#ressources">Ressources</a>
+          <a role="menuitem" href="#parents">Parents</a>
+          <a role="menuitem" href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="container">
+    <!-- HERO -->
+    <section id="accueil" class="hero">
+      <div>
+        <span class="badge">🌟 2025 • Programmes & activités</span>
+        <h1>La technologie au collège<br><span style="opacity:.85; font-weight:600">Apprendre, fabriquer, comprendre</span></h1>
+        <p class="lead">Retrouvez les <strong>cours</strong>, <strong>projets</strong>, <strong>tutoriels</strong> et <strong>ressources</strong> de M. Chaabane pour réussir en technologie. Informations utiles pour les parents et les collègues.</p>
+        <p>
+          <a class="cta" href="#cours">Voir les cours</a>
+          <a class="cta alt" href="#projets">Projets d'élèves</a>
+        </p>
+      </div>
+      <div class="img-card" aria-hidden="true">
+        <img alt="Élèves travaillant sur une maquette et une imprimante 3D" src="https://images.unsplash.com/photo-1581091215367-59ab6b83df31?q=80&w=1200&auto=format&fit=crop" />
+      </div>
+    </section>
+
+    <!-- COURS avec onglets niveaux -->
+    <section id="cours" aria-labelledby="titre-cours">
+      <h2 class="section-title" id="titre-cours">Cours & Séquences</h2>
+      <div class="tabs" role="tablist" aria-label="Niveaux">
+        <button role="tab" aria-selected="true" aria-controls="p6e" id="t6e">6e</button>
+        <button role="tab" aria-selected="false" aria-controls="p5e" id="t5e">5e</button>
+        <button role="tab" aria-selected="false" aria-controls="p4e" id="t4e">4e</button>
+        <button role="tab" aria-selected="false" aria-controls="p3e" id="t3e">3e</button>
+      </div>
+
+      <div id="p6e" class="tab-panel active" role="tabpanel" aria-labelledby="t6e">
+        <div class="grid grid-3">
+          <article class="card">
+            <div class="tag">Système technique</div>
+            <h3>Découvrir les objets connectés</h3>
+            <p>Fonctions d'usage, d'estime et techniques. Sous-systèmes.</p>
+            <p><a href="#">Fiche élève (PDF)</a></p>
+          </article>
+          <article class="card">
+            <div class="tag">Sécurité atelier</div>
+            <h3>Poste de travail & EPI</h3>
+            <p>Règles essentielles pour l'atelier.</p>
+            <p><a href="#">Affiche sécurité</a></p>
+          </article>
+        </div>
+      </div>
+
+      <div id="p5e" class="tab-panel" role="tabpanel" aria-labelledby="t5e">
+        <div class="grid grid-3">
+          <article class="card">
+            <div class="tag">Design</div>
+            <h3>Du besoin à la solution</h3>
+            <p>Démarche d'innovation, cahier des charges, prototype.</p>
+            <p><a href="#">Diaporama</a></p>
+          </article>
+          <article class="card">
+            <div class="tag">Éco-conception</div>
+            <h3>Cycle de vie</h3>
+            <p>Analyse ACV simplifiée et impacts.</p>
+            <p><a href="#">Fiche activité</a></p>
+          </article>
+        </div>
+      </div>
+
+      <div id="p4e" class="tab-panel" role="tabpanel" aria-labelledby="t4e">
+        <div class="grid grid-3">
+          <article class="card">
+            <div class="tag">Programmation</div>
+            <h3>Automatiser avec microcontrôleurs</h3>
+            <p>Capteurs, actionneurs, algorithmes (Arduino/Micro:bit).</p>
+            <p><a href="#">TP n°1 – Feux tricolores</a></p>
+          </article>
+          <article class="card">
+            <div class="tag">Énergie</div>
+            <h3>Conversion & stockage</h3>
+            <p>Chaînes d'énergie et d'information.</p>
+            <p><a href="#">Exercices</a></p>
+          </article>
+        </div>
+      </div>
+
+      <div id="p3e" class="tab-panel" role="tabpanel" aria-labelledby="t3e">
+        <div class="grid grid-3">
+          <article class="card">
+            <div class="tag">Projet</div>
+            <h3>Chef-d'œuvre techno</h3>
+            <p>Organisation, jalons, évaluation par compétences.</p>
+            <p><a href="#">Grille d'évaluation</a></p>
+          </article>
+          <article class="card">
+            <div class="tag">Orientation</div>
+            <h3>Industrie & métiers</h3>
+            <p>Parcours Avenir : ressources et témoignages.</p>
+            <p><a href="#">Ressources ONISEP</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJETS -->
+    <section id="projets" aria-labelledby="titre-projets">
+      <h2 class="section-title" id="titre-projets">Projets d'élèves</h2>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Serre connectée</h3>
+          <p>Mesurer l'humidité du sol et déclencher l'arrosage automatiquement.</p>
+          <ul>
+            <li><a href="#">Dossier de projet (PDF)</a></li>
+            <li><a href="#">Code Arduino</a></li>
+            <li><a href="#">Journal de bord</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Objet upcyclé</h3>
+          <p>Conception d'un objet pratique à partir de matériaux récupérés.</p>
+          <ul>
+            <li><a href="#">Charte sécurité atelier</a></li>
+            <li><a href="#">Fiche d'évaluation</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- RESSOURCES -->
+    <section id="ressources" aria-labelledby="titre-ressources">
+      <h2 class="section-title" id="titre-ressources">Ressources</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Tutoriels</h3>
+          <div class="list">
+            <a href="#">Impression 3D : préparer un modèle</a>
+            <a href="#">Découpe laser : paramétrage</a>
+            <a href="#">Cartes micro:bit : premiers pas</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Liens utiles</h3>
+          <div class="list">
+            <a href="#">Pix – compétences numériques</a>
+            <a href="#">GAR / ENT</a>
+            <a href="#">Banque d'images libres</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Parents</h3>
+          <p>Programme, équipement conseillé, suivi de la progression.</p>
+          <a href="#">Guide rapide</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARENTS -->
+    <section id="parents" aria-labelledby="titre-parents">
+      <h2 class="section-title" id="titre-parents">Informations parents</h2>
+      <div class="card">
+        <ul>
+          <li>Matériel conseillé (trousse, cahier, clés USB...).</li>
+          <li>Accès ENT pour suivre les devoirs et les notes.</li>
+          <li>Protection des données : photos et prénoms publiés uniquement avec accord.</li>
+        </ul>
+        <p><a href="#">Mentions RGPD (modèle)</a></p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="titre-contact">
+      <h2 class="section-title" id="titre-contact">Contact</h2>
+      <div class="card">
+        <form name="contact" onsubmit="event.preventDefault(); alert('Merci ! Votre message a été envoyé.'); this.reset();">
+          <div class="grid grid-2">
+            <label>Nom
+              <input required type="text" name="nom" placeholder="Votre nom" />
+            </label>
+            <label>Email
+              <input required type="email" name="email" placeholder="vous@exemple.fr" />
+            </label>
+          </div>
+          <label>Message
+            <textarea required name="message" rows="5" placeholder="Votre message..."></textarea>
+          </label>
+          <p><button class="cta" type="submit">Envoyer</button></p>
+        </form>
+        <p style="color:var(--muted); font-size:.95rem;">Ou écrivez via l'ENT du collège.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> M. Chaabane — Technologie au collège. <span aria-hidden="true">•</span> <a href="#">Mentions légales</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Menu mobile
+    const btn = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('menu');
+    btn?.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    // Onglets niveaux
+    document.querySelectorAll('[role="tab"]').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('[role="tab"]').forEach(t => t.setAttribute('aria-selected','false'));
+        tab.setAttribute('aria-selected','true');
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        document.getElementById(tab.getAttribute('aria-controls')).classList.add('active');
+      });
+    });
+    // Année
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Styles de focus pour champs
+    document.querySelectorAll('input, textarea').forEach(el => {
+      el.style.width='100%'; el.style.padding='.6rem .7rem'; el.style.border='1px solid var(--border)'; el.style.borderRadius='.6rem'; el.style.background='var(--bg)';
+      el.addEventListener('focus', () => el.style.outline='3px solid var(--ring)');
+      el.addEventListener('blur', () => el.style.outline='none');
+    });
+  </script>
+</body>
+</html>
